@@ -1,19 +1,6 @@
 let users = [];
 let user = {};
 
-function existingusers() {
-  return (
-    "<ul>" +
-    users
-      .map(
-        (u) =>
-          `<li><b>${u.name ? u.name : "User"}</b> - <span style="color:gray">${u.email}</span></li>`
-      )
-      .join("") +
-    "</ul>"
-  );
-}
-
 const validateUser = () => {
   let email = document.getElementById("txtEmail").value;
   let pass = document.getElementById("txtPass").value;
@@ -27,18 +14,35 @@ const validateUser = () => {
   }
 };
 
+const renderUserList = () => {
+    let x= "<h4>Registered Users:</h4>";
+    if(users.length==0){
+        return "<p>No Users Registered</p>";
+
+    }
+    users.forEach(user => {
+        x += `<p>${user.name} | ${user.email} | ${user.pass} | ${user.balance}</p>`;
+    });
+    
+    return x;
+};
+
 const loginForm = () => {
-  const str = `<div>
+  const str = `
+    <div style='display:flex'>
+    <div>
     <h3>Login Form</h3>
     <p id='errorTxt'></p>
-    <p>email: <input type='text' id='txtEmail'></p>
-    <p>password: <input type='password' id='txtPass'></p>
+    <p><input type='text' id='txtEmail'></p>
+    <p><input type='password' id='txtPass'></p>
     <p><button onclick='validateUser()'>Submit</button></p>
     <p><button onclick='registerForm()'>Create Account</button></p>
-    <hr>
-    <h4>Existing Users</h4>
-    ${existingusers()}
-    </div>`;
+    </div>
+    <div>
+     ${renderUserList()}
+    </div>
+    </div>
+    `;
   root.innerHTML = str;
 };
 
@@ -50,6 +54,7 @@ const saveUser = () => {
     name,
     email,
     pass,
+    balance:1000,
   });
   loginForm();
 };
@@ -57,20 +62,22 @@ const saveUser = () => {
 const registerForm = () => {
   const str = `<div>
     <h3>Registration Form</h3>
-    <p>name: <input type='text' id='txtName'></p>
-    <p>email: <input type='text' id='txtEmail'></p>
-    <p>password: <input type='password' id='txtPass'></p>
+    <p><input type='text' id='txtName'></p>
+    <p><input type='text' id='txtEmail'></p>
+    <p><input type='password' id='txtPass'></p>
     <p><button onclick='saveUser()'>Submit</button></p>
     <p><button onclick='loginForm()'>Already a member? Login here...</button></p>
-    </div>`;
-  root.innerHTML = str;
+    `;
+  root.innerHTML = str + "</div>";
 };
 
 const showHome = () => {
   const str = `<div>
-    <h3>Welcome here!</h3>
+    <h3>Welcome</h3>
     <p><button onclick='loginForm()'>Logout</button></p>
-    </div>`;
-  root.innerHTML = str;
+    `;
+  root.innerHTML = str + "</div>";
 };
 
+
+loginForm()
