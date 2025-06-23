@@ -1,4 +1,4 @@
-// array methods
+// Arrays and Methods
 
 
 const points = [1,2,3,4,5,6,7,8,9]
@@ -16,6 +16,6 @@ const points = [1,2,3,4,5,6,7,8,9]
 // })
 
 points.forEach((a,b,c) => {
-    // console.log(c[b]);
-    console.log(a)
+    console.log(c[b]);
+    // console.log(a)
 })
