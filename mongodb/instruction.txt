@@ -1,0 +1,87 @@
+download mongodb compass
+download shell
+
+in cmd 
+run
+1. mongosh
+ after test< run 
+2. show dbs
+click dbname exaple admin
+3. use admin
+4. exit
+
+5. mongosh
+6. show collection
+
+create a database 
+
+use pepclass
+
+db.users.insertOne({name:"Ujjwal",age:21}) // to insert name city ,etc ...
+db.users.insertOne({name:"Jyoti",age:22})
+
+db.users.find() // what you have inserted till now
+db.users.findOne() // only 1st one will run 
+
+db.users.insertMany([(name:"Ujjwal",age:21),
+             (name:"Jyoti",age:22),
+             (name:"Nitin",age:23),
+             (name:"Reshav",age:24)]) // insert many at a time
+
+
+db.users.drop() // it will delete evrything
+
+
+
+
+3rd task
+mongosh
+
+use employee
+
+db.employee.insertOne({name:"john smith",email:"john@gmail.com",department:"SDE",salary:2525,location:"",date:Date()})
+
+db.employee.insertMany([
+  {
+    name: "mike tyson",
+    email: "mike@gmail.com",
+    department: "IT",
+    salary: 2525,
+    location: "Hyderabad",
+    date: new Date()
+  },
+  {
+    name: "Rahul",
+    email: "rahul@gmmail.com",
+    department: "ML",
+    salary: 2535,
+    location: "Mumbai",
+    date: new Date()
+  }
+])
+
+
+db.employee.find().skip(1) // skip 1st one i.e john
+db.employee.find().skip(1).limit(1) // it will skip one and show only one out of two i.e mike tyson
+
+
+db.employee.find().sort({name:1}) // it will sort names accordingly i.e john then mike then rahul
+db.employee.find().sort({name:-1}) // it will sort reverse i.e mike rahul john
+db.employee.find().sort({name:1}).limit(1) // displays john
+db.employee.find().sort({name:1}).limit // displays mike
+
+db.employee.find().sort({},{name:1})
+
+db.employee.find({department:"SDE"}) // it will only give details of john as his deparment id SDE
+db.employee.find({}, {name: 1 }) // it will print name and id of those
+db.employee.find({}, {_id:0, name: 1 }) // it will not show the id part it will be disabled and show only name part
+db.employee.find({}, {_id:false, name: true }) //it will not show the id part it will be disabled and show only name part
+
+db.employee.find({location:"Hyderabad"}) // displays the details of the hyderabad person
+db.employee.find({}, {EmpName:"$name"}) // it will show the name of every employee along with it but name heading will change to EmpName
+
+
+
+
+
+
